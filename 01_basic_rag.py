@@ -6,24 +6,9 @@ from __future__ import annotations
 
 import sys
 
-from llama_index.core import PromptTemplate
-
 import ingest
 
-ANSWER_PROMPT = PromptTemplate(
-    """Eres DocuBot, un asistente especializado en articulos y ensayos sobre IA.
-Responde SOLO usando la informacion del contexto proporcionado.
-Si el contexto no contiene la respuesta, di: "No tengo informacion sobre eso en el corpus."
-
-Al final de tu respuesta, cita la fuente con el formato exacto:
-[Fuente: titulo del ensayo]
-
-Pregunta: {query_str}
-Contexto:
-{context_str}
-
-Respuesta:"""
-)
+ANSWER_PROMPT = ingest.ANSWER_PROMPT
 
 
 def main() -> None:

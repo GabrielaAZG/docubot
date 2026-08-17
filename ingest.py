@@ -12,6 +12,7 @@ from pathlib import Path
 import chromadb
 from dotenv import load_dotenv
 from llama_index.core import (
+    PromptTemplate,
     Settings,
     SimpleDirectoryReader,
     StorageContext,
@@ -31,6 +32,22 @@ CHUNK_OVERLAP = 50
 SIMILARITY_TOP_K = 4
 
 _TITLE_RE = re.compile(r"^T[íi]tulo:\s*(.+)$", re.MULTILINE)
+
+ANSWER_PROMPT = PromptTemplate(
+    """Eres DocuBot, un asistente especializado en articulos y ensayos sobre IA.
+Responde SOLO usando la informacion del contexto proporcionado.
+Si el contexto no contiene la respuesta, responde EXACTAMENTE:
+"No tengo informacion sobre eso en el corpus." sin texto adicional ni cita.
+
+Al final de tu respuesta, cita la fuente con el formato exacto:
+[Fuente: titulo del ensayo]
+
+Pregunta: {query_str}
+Contexto:
+{context_str}
+
+Respuesta:"""
+)
 
 
 def setup_console() -> None:
