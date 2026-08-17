@@ -47,7 +47,7 @@ flowchart LR
 python -m venv .venv
 .venv\Scripts\activate          # Windows (Linux/macOS: source .venv/bin/activate)
 pip install -r requirements.txt
-copy .env.example .env          # pegar OPENAI_API_KEY real
+.env          # pegar OPENAI_API_KEY real
 python scripts/download_corpus.py   # (opcional) regenerar docs/
 python -c "import ingest; ingest.configure(); ingest.ingest()"   # indexar corpus
 streamlit run app.py            # UI
