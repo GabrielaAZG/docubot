@@ -4,8 +4,7 @@ Chatbot RAG sobre artículos y ensayos de IA que **responde con citas de fuente*
 **detecta alucinaciones** (marca cuando la respuesta no está respaldada por el
 corpus) y **dice «No lo sé»** cuando no hay contexto.
 
-Proyecto de portafolio de AI Engineer: demuestra RAG más allá del tutorial
-básico — grounding verificado, anti-alucinación y fallback.
+Grounding verificado, anti-alucinación y fallback.
 
 ---
 
