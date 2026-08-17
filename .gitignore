@@ -1,0 +1,15 @@
+# Entorno
+.env
+.venv/
+__pycache__/
+*.pyc
+
+# Datos locales generados
+index/
+docs_extra/
+
+# IDE / SO
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
