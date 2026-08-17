@@ -104,8 +104,4 @@ Cada documento lleva su procedencia (título, autor, URL, acceso) en el header.
 - **Contenido**: solo fuentes de libre acceso; citadas en esta tabla y en cada
   archivo del corpus.
 
-## Proyectos similares / siguientes pasos
 
-- Evaluación cuantitativa con [RAGAS](https://docs.ragas.io/) (faithfulness, answer relevancy)
-- Grounding por NLI (modelo de entailment) en lugar del 2º LLM
-- Chunking jerárquico + reranker (p. ej. Cohere Rerank) para las preguntas de matiz
