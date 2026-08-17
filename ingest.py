@@ -96,6 +96,29 @@ def ingest(docs_dir: Path = DOCS_DIR, persist_dir: Path = INDEX_DIR) -> VectorSt
     return index
 
 
+def ingest_extra(docs_dir: Path, persist_dir: Path = INDEX_DIR) -> VectorStoreIndex:
+    """Añade documentos extra (subidos por el usuario) al indice existente."""
+    reader = SimpleDirectoryReader(
+        input_dir=str(docs_dir), required_exts=[".md", ".txt", ".pdf"]
+    )
+    documents = reader.load_data()
+    client = chromadb.PersistentClient(path=str(persist_dir))
+    collection = client.get_or_create_collection(
+        COLLECTION, metadata={"hnsw:space": "cosine"}
+    )
+    vector_store = ChromaVectorStore(chroma_collection=collection)
+    storage_context = StorageContext.from_defaults(vector_store=vector_store)
+
+    for doc in documents:
+        doc.metadata["title"] = _title_from_file(Path(doc.metadata["file_path"]))
+
+    index = VectorStoreIndex.from_documents(
+        documents, storage_context=storage_context, show_progress=True
+    )
+    print(f"Docs extra ingeridos: {len(documents)}")
+    return index
+
+
 def load_index(persist_dir: Path = INDEX_DIR) -> VectorStoreIndex:
     """Carga el indice persistido sin re-embeder."""
     client = chromadb.PersistentClient(path=str(persist_dir))
